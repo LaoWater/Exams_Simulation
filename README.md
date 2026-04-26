@@ -61,3 +61,41 @@ This is optional. It asks you to build a dictionary that counts each word in the
 ```bash
 python main.py
 ```
+
+
+
+
+
+
+## Example of prompt to use for AI-Assisted Learning & Preparation for Exam
+
+```
+in /art-of-programming is my main course.
+
+i am preparing for THE exam - it is going to be based on the first 7-8 chapters of the main repo.
+
+
+study the course.
+
+
+Now, we turn to the exam simulation:
+/Exam-04-The-Cipher-Anomaly
+
+This is where my exam will be: Exam-04-The-Cipher-Anomaly\Students\Lao
+
+-----------
+
+I don't want you to write the code for me, but i want you to take me slowly and incrementally to understanding and solving the exam.
+
+What i Understand from it:
+variables
+loops
+if-else
+etc
+
+What i don't understand yet:
+file reading?? 
+self?? what is self??
+how to test??
+pass ?? what is pass?
+GIT? how do i submit it?```
