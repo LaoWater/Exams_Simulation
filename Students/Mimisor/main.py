@@ -7,9 +7,9 @@ DATA_FILE = Path(__file__).with_name("transmission.txt")
 def load_clean_lines(filepath):
     # TODO 1:
     # Open the file and read it line by line.
-    # Strip each line.
-    # Ignore blank lines.
-    # Ignore lines that start with "STATIC:".
+    # strip()..
+    # if... Ignore blank lines.
+    # if... Ignore lines that start with "STATIC:".
     # Return a list of the remaining cleaned lines.
     return []
 
