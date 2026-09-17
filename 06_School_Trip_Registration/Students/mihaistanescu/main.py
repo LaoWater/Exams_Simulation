@@ -13,43 +13,63 @@ class Trip:
 
     def available_seats(self):
         # TODO 1: Return capacity minus the number of registered participants.
-        return 0
+        return self.capacity - len(self.participants)
 
     def register(self, participant):
         # TODO 2: If no seats remain, return False without changing the list.
         # Otherwise append participant to self.participants and return True.
         # Hint: use self.available_seats().
+        print(f"{self.participants}, {self.available_seats()}")
+
+        if self.available_seats() > 0:
+            self.participants.append(participant)
+            return True
         return False
 
     def total_income(self):
         # TODO 3: Loop through self.participants and sum their ticket_price.
         # Return 0 for an empty trip. There are no taxes or discounts.
-        return 0
+        total = 0
+        for participant in self.participants:
+            total += participant.ticket_price
+        return total
 
 
 class GuidedTrip(Trip):
     def __init__(self, destination, capacity, min_age):
         # TODO 4: Use super().__init__() with destination and capacity.
         # Then store min_age in self.min_age.
-        pass
+        super().__init__(destination, capacity)
+        self.min_age = min_age
 
     def register(self, participant):
         # TODO 5: If participant.age is below self.min_age, return False.
         # Otherwise return the result of super().register(participant).
         # A participant whose age equals min_age IS allowed.
-        return False
+        print(f"Participant {participant.name}, {participant.age}")
+        if participant.age < self.min_age:
+            return False
+        return super().register(participant)
 
 
 def count_students(participants):
     # TODO 6: Loop through participants and count those with age < 18.
     # For this exercise, "student" means anyone under 18. Empty list -> 0.
-    return 0
+    count = 0
+    for participant in participants:
+        if participant.age < 18:
+            count += 1
+    return count                
 
 
 def count_by_ticket_price(participants):
     # OPTIONAL: Count participants for each ticket price in a dictionary.
     # Example: {30: 2, 50: 1}. Use numbers as keys. Empty list -> {}.
-    return {}
+    count = {}
+    for participant in participants:
+        price = participant.ticket_price
+        count[price] = count.get(price, 0) + 1
+    return count
 
 
 # Small example to run after completing the main TODOs.
