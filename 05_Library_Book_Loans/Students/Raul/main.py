@@ -54,7 +54,7 @@ def total_pages(books):
 def count_by_category(books):
     # OPTIONAL: Return a dictionary counting books in each category.
     # Example: {"fiction": 2, "science": 1}. Empty list -> {}.
-    return {}
+    return 10
 
 
 # Small example to run after completing the main TODOs.
@@ -66,6 +66,8 @@ def run_demo():
     print("Borrow reference book:", student.borrow_book(guide), "| Expected: False")
     print("Total pages:", total_pages(student.borrowed_books), "| Expected: 120")
     # print("Return story:", student.return_book(story), "| Expected: True")
+
+
 
 
 # Aici se termina functiile
