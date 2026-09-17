@@ -27,6 +27,7 @@ class Trip:
         return 0
 
 
+
 class GuidedTrip(Trip):
     def __init__(self, destination, capacity, min_age):
         # TODO 4: Use super().__init__() with destination and capacity.
