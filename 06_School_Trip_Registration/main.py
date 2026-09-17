@@ -1,75 +1,94 @@
 class Participant:
-    def __init__(self, name, age, ticket_price):
+    def __init__(self, name: str, age: int, ticket_price: int):
         self.name = name
         self.age = age
         self.ticket_price = ticket_price
 
 
 class Trip:
-    def __init__(self, destination, capacity):
+    def __init__(self, destination: str, capacity: int):
         self.destination = destination
         self.capacity = capacity
-        self.participants = []
+        self.participants = []  # Lista în care salvăm participanții acceptați
 
-    def available_seats(self):
-        # TODO 1: Return capacity minus the number of registered participants.
-        return 0
+    def available_seats(self) -> int:
+        # TODO 1: Returnează capacitatea minus numărul participanților înscriși
+        return self.capacity - len(self.participants)
 
-    def register(self, participant):
-        # TODO 2: If no seats remain, return False without changing the list.
-        # Otherwise append participant to self.participants and return True.
-        # Hint: use self.available_seats().
+    def register(self, participant: Participant) -> bool:
+        # TODO 2: Dacă există un loc liber, adaugă participantul și returnează True. Altfel False.
+        if self.available_seats() > 0:
+            self.participants.append(participant)
+            return True
         return False
 
-    def total_income(self):
-        # TODO 3: Loop through self.participants and sum their ticket_price.
-        # Return 0 for an empty trip. There are no taxes or discounts.
-        return 0
+    def total_income(self) -> int:
+        # TODO 3: Folosește o buclă pentru a aduna ticket_price pentru participanții acceptați
+        suma_totala = 0
+        for persoana in self.participants:
+            suma_totala += persoana.ticket_price
+        return suma_totala
 
 
+# TODO 4: Moștenire din clasa părinte Trip
 class GuidedTrip(Trip):
-    def __init__(self, destination, capacity, min_age):
-        # TODO 4: Use super().__init__() with destination and capacity.
-        # Then store min_age in self.min_age.
-        pass
+    def __init__(self, destination: str, capacity: int, min_age: int):
+        # Apelez constructorul clasei părinte Trip pentru a salva destination și capacity
+        super().__init__(destination, capacity)
+        # Salvez min_age ca atribut specific acestei clase
+        self.min_age = min_age
 
-    def register(self, participant):
-        # TODO 5: If participant.age is below self.min_age, return False.
-        # Otherwise return the result of super().register(participant).
-        # A participant whose age equals min_age IS allowed.
-        return False
-
-
-def count_students(participants):
-    # TODO 6: Loop through participants and count those with age < 18.
-    # For this exercise, "student" means anyone under 18. Empty list -> 0.
-    return 0
+    def register(self, participant: Participant) -> bool:
+        # TODO 5: Respinge participanții cu vârsta sub min_age.
+        # Pentru ceilalți, folosește metoda părinte de înscriere.
+        if participant.age < self.min_age:
+            return False
+        return super().register(participant)
 
 
-def count_by_ticket_price(participants):
-    # OPTIONAL: Count participants for each ticket price in a dictionary.
-    # Example: {30: 2, 50: 1}. Use numbers as keys. Empty list -> {}.
-    return {}
+def count_students(participants: list) -> int:
+    # TODO 6: Folosește o buclă pentru a număra participanții cu vârsta sub 18 ani
+    numar_elevi = 0
+    for persoana in participants:
+        if persoana.age < 18:
+            numar_elevi += 1
+    return numar_elevi
 
 
-# Small example to run after completing the main TODOs.
+# --- SARCINĂ OPȚIONALĂ (BONUS) ---
+def count_by_ticket_price(participants: list) -> dict:
+    # Returnează un dicționar cu numărul participanților pentru fiecare preț de bilet
+    dictionar_preturi = {}
+    for persoana in participants:
+        pret = persoana.ticket_price
+        if pret in dictionar_preturi:
+            dictionar_preturi[pret] += 1
+        else:
+            dictionar_preturi[pret] = 1
+    return dictionar_preturi
+
+
+# Funcție demonstrativă pentru a verifica dacă totul rulează ca în cerință
 def run_demo():
-    trip = GuidedTrip("Mountain Observatory", capacity=1, min_age=12)
-    print("Register age 10:", trip.register(Participant("Luca", 10, 20)), "| Expected: False")
-    print("Register age 12:", trip.register(Participant("Ana", 12, 30)), "| Expected: True")
-    print("Register when full:", trip.register(Participant("Radu", 16, 30)), "| Expected: False")
-    print("Income:", trip.total_income(), "| Expected: 30")
+    ana = Participant("Ana", 12, 30)
+    elena = Participant("Elena", 18, 50)
+    luca = Participant("Luca", 10, 20)
+    radu = Participant("Radu", 16, 30)
+    trip = GuidedTrip("Mountain Observatory", capacity=2, min_age=12)
 
+    print(trip.register(luca))       # Ar trebui să afișeze: False
+    print(trip.available_seats())    # Ar trebui să afișeze: 2
+    print(trip.register(ana))        # Ar trebui să afișeze: True
+    print(trip.register(elena))      # Ar trebui să afișeze: True
+    print(trip.register(radu))       # Ar trebui să afișeze: False
+    print(trip.available_seats())    # Ar trebui să afișeze: 0
+    print(trip.total_income())       # Ar trebui să afișeze: 80
+    print(count_students(trip.participants))  # Ar trebui să afișeze: 1
 
-def main():
-    print("=== School Trip Registration ===")
-    print("Help teachers organize the next school outing.")
-    print("Complete TODOs 1-6 in this file:")
-    print("1. Count free seats.  2. Register a participant.  3. Sum ticket prices.")
-    print("4. Initialize a guided trip.  5. Check minimum age.  6. Count students.")
-    print("Optional: count participants by ticket price.")
-    print('\nAfter completing the TODOs, run: python -c "from main import run_demo; run_demo()"')
+    # Verificare bonus
+    print("\n--- Test Bonus ---")
+    print(count_by_ticket_price([ana, elena, radu]))  # Ar trebui să afișeze: {30: 2, 50: 1}
 
 
 if __name__ == "__main__":
-    main()
+    run_demo()
