@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+.idea/
+.vscode/
+.DS_Store
+
+# Official exams are maintained separately; keep them out of this repository.
+/01_Smart_City_Delivery/
+/02_Restaurant_Management/
+/03_Fintech_Processor/

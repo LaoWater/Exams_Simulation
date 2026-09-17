@@ -1,63 +1,40 @@
-# Exam 4: Harbor Distress Log
+# Python Exams Simulation
 
-## Story
-During a storm on the coast, a harbor coordination point receives a damaged text log from a lighthouse radio system. The log was saved in `transmission.txt`, but some lines are only static. Your job is to clean the log and rebuild the final distress message.
+Three Python practice exams for classroom recap and independent exam simulations. Each exam contains a small story, guided TODOs, English and Romanian instructions, and a short demo showing actual and expected results.
 
-This exam keeps everything simple and readable. The main work lives in `main.py`, and the text file is your only extra input.
+[Instrucțiuni în română](README_RO.md)
 
-## Exam Style
-- Time target: 90 to 120 minutes
-- Main file: `main.py`
-- Extra file: `transmission.txt`
-- Focus: file reading, string cleaning, list appending, joining strings, loops, basic counting
+## Choose an exam
 
-## Main Tasks
-1. Complete `load_clean_lines(filepath)`:
-   - open the file
-   - strip newlines
-   - skip blank lines
-   - skip lines that start with `STATIC:`
-2. Complete `BeaconBoard.add_line()` so it stores cleaned lines.
-3. Complete `BeaconBoard.full_message()` so it returns one sentence made from all stored lines.
-4. Complete `BeaconBoard.count_help_calls()` so it counts how many lines contain the word `help`.
-5. Complete `BeaconBoard.show_message()` so it prints the final message neatly.
+| Exam | Practice focus |
+| --- | --- |
+| [04 — Harbor Distress Log](04_Harbor_Distress_Log/README.md) | File reading, strings, filtering, counting |
+| [05 — Library Book Loans](05_Library_Book_Loans/README.md) | Inheritance, borrowing limits, returning books |
+| [06 — School Trip Registration](06_School_Trip_Registration/README.md) | Inheritance, registration, age rules, totals |
 
-## What Is Already Given
-- The story setup
-- A sample log file
-- Starter code in one file
-- A test checklist printed when you run the file
+For a recap followed by a simulation, work through **05 together**, then use **06 independently**. Allow 90–120 minutes for a full exam; choose fewer tasks if the recap shares the same session. Exam 04 is separate practice for files and strings.
 
-## Example Input and Expected Output
+## Getting started
 
-**Input (transmission.txt content):**
-```text
-STATIC: zzzzzzt
-send help immediately
-STATIC: kkkrrhhh
-we need help now
+Use Python 3. No third-party packages are needed.
 
-```
+1. Open one exam folder and read its README.
+2. Run `python main.py` to see the introduction.
+3. Complete the numbered TODOs in that folder's `main.py`.
+4. Run the short demo from the same folder:
 
-**Action:**
-```python
-lines = load_clean_lines("transmission.txt")
-board = BeaconBoard("South Harbor")
-for line in lines:
-    board.add_line(line)
-```
-
-**Expected Results:**
-- `load_clean_lines()` should return exactly `["send help immediately", "we need help now"]` (skipping the "STATIC:" lines and blank lines).
-- `board.full_message()` should return `"send help immediatelywe need help now"` (or joined with a space depending on your implementation).
-- `board.count_help_calls()` should return `2`.
-
-## Optional Task
-At the bottom of `main.py`, complete `word_count(message)`.
-
-This is optional. It asks you to build a dictionary that counts each word in the final message.
-
-## Run
 ```bash
-python main.py
+python -c "from main import run_demo; run_demo()"
 ```
+
+The demo prints a few results alongside their expected values. It may fail or produce incomplete results before you finish the TODOs. It is a usage example, not a comprehensive test suite or an automatic grade. Try another input yourself to check your understanding.
+
+The optional task in each exam is for extra practice after the main tasks. Starter files intentionally contain no completed solutions.
+
+## Repository layout
+
+Each numbered folder is a standalone exercise. Exam 04 also includes `transmission.txt`; its code locates that file beside `main.py`.
+
+This collection continues the history of the former `Exam-04-The-Cipher-Anomaly` repository.
+
+Student submissions belong inside the corresponding exam: `<exam>/Students/<student>/`. For example, [Liviu’s submission for exam 04](04_Harbor_Distress_Log/Students/Liviu/main.py). Keep each submission’s supporting files beside its code.

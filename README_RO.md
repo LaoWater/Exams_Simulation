@@ -1,63 +1,40 @@
-# Examen 4: Jurnalul de Urgență al Portului
+# Simulări de examen Python
 
-## Povestea
-În timpul unei furtuni pe coastă, un punct de coordonare portuar primește un jurnal text deteriorat de la sistemul radio al unui far. Jurnalul a fost salvat în `transmission.txt`, dar unele linii reprezintă doar interferențe (static). Sarcina ta este să cureți jurnalul și să reconstruiești mesajul final de urgență.
+Trei exerciții pentru recapitulare la clasă și simulări individuale. Fiecare examen include o poveste scurtă, TODO-uri ghidate, instrucțiuni în română și engleză și un exemplu care afișează rezultatele obținute lângă cele așteptate.
 
-Acest examen menține totul simplu și lizibil. Munca principală are loc în `main.py`, iar fișierul text este singurul element de intrare suplimentar.
+[English instructions](README.md)
 
-## Formatul Examenului
-- Timp alocat: 90 - 120 minute
-- Fișierul principal: `main.py`
-- Fișier suplimentar: `transmission.txt`
-- Focus: citirea fișierelor, curățarea șirurilor de caractere, adăugarea în liste, unirea șirurilor de caractere, bucle, numărare de bază
+## Alege un examen
 
-## Sarcini Principale
-1. Completează `load_clean_lines(filepath)`:
-   - deschide fișierul
-   - elimină caracterele de rând nou (newline) folosind strip
-   - ignoră rândurile goale
-   - ignoră rândurile care încep cu `STATIC:`
-2. Completează `BeaconBoard.add_line()` astfel încât să stocheze liniile curățate.
-3. Completează `BeaconBoard.full_message()` astfel încât să returneze o singură propoziție alcătuită din toate liniile stocate.
-4. Completează `BeaconBoard.count_help_calls()` astfel încât să contorizeze câte linii conțin cuvântul `help` (ajutor).
-5. Completează `BeaconBoard.show_message()` astfel încât să printeze ordonat mesajul final.
+| Examen | Concepte exersate |
+| --- | --- |
+| [04 — Jurnalul de urgență al portului](04_Harbor_Distress_Log/README_RO.md) | Citirea fișierelor, șiruri, filtrare, numărare |
+| [05 — Împrumuturi la bibliotecă](05_Library_Book_Loans/README_RO.md) | Moștenire, limite de împrumut, returnarea cărților |
+| [06 — Înscrieri pentru excursie](06_School_Trip_Registration/README_RO.md) | Moștenire, înscriere, vârstă minimă, totaluri |
 
-## Ce Este Deja Oferit
-- Povestea de început
-- Un fișier jurnal de probă
-- Codul de start într-un singur fișier
-- O listă de teste printată când rulezi fișierul
+Pentru recapitulare urmată de simulare, rezolvați **05 împreună**, apoi **06 individual**. Alocați 90–120 de minute pentru un examen complet; alegeți mai puține sarcini dacă includeți și recapitularea în aceeași sesiune. Examenul 04 este un exercițiu separat pentru fișiere și șiruri de caractere.
 
-## Exemplu de Date de Intrare și Ieșire Așteptată
+## Cum lucrezi
 
-**Intrare (conținut transmission.txt):**
-```text
-STATIC: zzzzzzt
-trimite ajutor imediat
-STATIC: kkkrrhhh
-avem nevoie de ajutor acum
+Ai nevoie de Python 3, fără pachete externe.
 
-```
+1. Deschide folderul unui examen și citește instrucțiunile.
+2. Rulează `python main.py` pentru introducere.
+3. Completează TODO-urile numerotate din acel `main.py`.
+4. Rulează exemplul scurt din același folder:
 
-**Acțiune:**
-```python
-lines = load_clean_lines("transmission.txt")
-board = BeaconBoard("Portul de Sud")
-for line in lines:
-    board.add_line(line)
-```
-
-**Rezultate Așteptate:**
-- `load_clean_lines()` ar trebui să returneze exact `["trimite ajutor imediat", "avem nevoie de ajutor acum"]` (sărind peste liniile "STATIC:" și cele goale).
-- `board.full_message()` ar trebui să returneze `"trimite ajutor imediatavem nevoie de ajutor acum"` (sau unite cu un spațiu, în funcție de implementarea ta).
-- `board.count_help_calls()` ar trebui să returneze `2`.
-
-## Sarcina Opțională
-La finalul fișierului `main.py`, completează `word_count(message)`.
-
-Acesta este opțional. Îți cere să construiești un dicționar care contorizează de câte ori apare fiecare cuvânt în mesajul final.
-
-## Rulare
 ```bash
-python main.py
+python -c "from main import run_demo; run_demo()"
 ```
+
+Exemplul afișează câteva rezultate lângă valorile așteptate. Poate produce erori sau rezultate incomplete până termini TODO-urile. Este un exemplu de utilizare, nu o suită completă de teste și nici o notare automată. Încearcă și alte date pentru a verifica dacă ai înțeles.
+
+Sarcina opțională este pentru practică suplimentară după sarcinile principale. Fișierele de start nu conțin soluțiile completate.
+
+## Structură
+
+Fiecare folder numerotat este un exercițiu independent. Examenul 04 include și `transmission.txt`, pe care codul îl caută lângă `main.py`.
+
+Această colecție continuă istoricul fostului repository `Exam-04-The-Cipher-Anomaly`.
+
+Rezolvările studenților se păstrează în examenul corespunzător: `<examen>/Students/<student>/`. De exemplu, [rezolvarea lui Liviu pentru examenul 04](04_Harbor_Distress_Log/Students/Liviu/main.py). Fișierele auxiliare rămân lângă codul rezolvării.

@@ -26,12 +26,14 @@ class BeaconBoard:
 
     def full_message(self):
         # TODO 3:
-        # Join every line in self.lines into one string and return it.
+        # Join self.lines with one space between lines and return the string.
+        # Hint: " ".join(self.lines)
         return ""
 
     def count_help_calls(self):
         # TODO 4:
-        # Count how many stored lines contain the word "help".
+        # Count lines where "help" is a separate word in line.lower().split().
+        # Count each matching line once. The supplied text has no punctuation.
         return 0
 
     def show_message(self):
@@ -63,26 +65,22 @@ def print_checklist():
     print("6. Optional: word_count() should build a frequency dictionary.")
 
 
-def run_quick_checks():
+# Small example to run after completing the main TODOs.
+def run_demo():
     board = BeaconBoard("North Point")
-    clean_lines = load_clean_lines(DATA_FILE)
-    for line in clean_lines:
+    lines = load_clean_lines(DATA_FILE)
+    for line in lines:
         board.add_line(line)
-
-    # What is 'assert'?
-    # 'assert' is used to auto-test your answers.
-    # If your load_clean_lines() function correctly filters out the junk lines,
-    # the length of the list will be exactly 4, and the assert passes.
-    # Otherwise, it crashes to let you know something is wrong.
-    assert len(clean_lines) == 4
-    assert board.count_help_calls() == 2
-    assert "help" in board.full_message()
+    print("Clean lines:", len(lines), "| Expected: 4")
+    print("Help calls:", board.count_help_calls(), "| Expected: 2")
+    print("Message:", board.full_message())
+    print("Expected:", "help fishing boat mara near south breakwater engine failed after taking water help request tow to sulina harbor before dark crew safe waiting with anchor down")
 
 
 def main():
     print_story_setup()
     print_checklist()
-    print("\nAfter finishing the TODOs, run run_quick_checks() to self-test.")
+    print("\nAfter finishing the TODOs, run run_demo() to compare your results with the expected values.")
 
 
 if __name__ == "__main__":
